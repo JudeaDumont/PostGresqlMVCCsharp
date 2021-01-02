@@ -15,7 +15,17 @@ loginButton.addEventListener("click", (e) => {
         dataType: "json",
         success: function (response) {
             if (response != null) {
-                alert("Success");
+                alert(JSON.stringify(response));
+
+                //todo: logout functionality needs to delete the cookies
+                Cookies.set('name', response.user.value.name, { expires: 1 });
+                Cookies.set('id', response.user.value.id, { expires: 1 });
+                Cookies.set('password', response.user.value.password, { expires: 1 });
+
+                console.log(response.user.value.name);
+                console.log(response.user.value.id);
+                console.log(response.user.value.password);
+
             } else {
                 alert("Something went wrong");
             }
